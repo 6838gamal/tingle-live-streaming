@@ -11,7 +11,7 @@ import 'package:tingle/page/chat_page/binding/chat_binding.dart';
 import 'package:tingle/page/chat_page/view/chat_view.dart';
 import 'package:tingle/page/coin_history_page/binding/coin_history_binding.dart';
 import 'package:tingle/page/coin_history_page/view/coin_history_view.dart';
-import 'package:tingle/page/connection_page/binding/Search_connection_binding.dart';
+import 'package:tingle/page/connection_page/binding/search_connection_binding.dart';
 import 'package:tingle/page/connection_page/binding/connection_binding.dart';
 import 'package:tingle/page/connection_page/view/connection_search_view.dart';
 import 'package:tingle/page/connection_page/view/connection_view.dart';
