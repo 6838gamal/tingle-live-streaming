@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tingle/page/connection_page/controller/connection_controller.dart';
-import 'package:tingle/page/connection_page/widget/Following_widget.dart';
+import 'package:tingle/page/connection_page/widget/following_widget.dart';
 import 'package:tingle/page/connection_page/widget/connection_appbar_widget.dart';
 import 'package:tingle/page/connection_page/widget/follower_widget.dart';
 import 'package:tingle/page/connection_page/widget/friend_widget.dart';
