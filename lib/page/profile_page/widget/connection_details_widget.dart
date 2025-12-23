@@ -5,7 +5,6 @@ import 'package:tingle/custom/function/custom_format_number.dart';
 import 'package:tingle/page/profile_page/controller/profile_controller.dart';
 import 'package:tingle/routes/app_routes.dart';
 import 'package:tingle/utils/api_params.dart';
-import 'package:tingle/utils/color.dart';
 import 'package:tingle/utils/constant.dart';
 import 'package:tingle/utils/enums.dart';
 import 'package:tingle/utils/font_style.dart';
@@ -23,12 +22,13 @@ class ConnectionDetailsWidget extends StatelessWidget {
         width: Get.width,
         margin: const EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
-          color: AppColor.white.withValues(alpha: 0.5),
+          // ✅ خلفية بني
+          color: const Color(0xFF4E342E),
           borderRadius: BorderRadius.circular(15),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: AppColor.secondary.withValues(alpha: 0.1),
-              blurRadius: 2,
+              color: Color(0x33000000),
+              blurRadius: 4,
               spreadRadius: 2,
             ),
           ],
@@ -45,11 +45,7 @@ class ConnectionDetailsWidget extends StatelessWidget {
                 });
               },
             ),
-            VerticalDivider(
-              color: AppColor.grayText.withValues(alpha: 0.3),
-              indent: 15,
-              endIndent: 15,
-            ),
+            _divider(),
             ItemWidget(
               title: EnumLocal.txtFollow.name.tr,
               count: (controller.fetchUserProfileModel?.user?.totalFollowing ?? 0).toInt(),
@@ -60,11 +56,7 @@ class ConnectionDetailsWidget extends StatelessWidget {
                 });
               },
             ),
-            VerticalDivider(
-              color: AppColor.grayText.withValues(alpha: 0.3),
-              indent: 15,
-              endIndent: 15,
-            ),
+            _divider(),
             ItemWidget(
               title: EnumLocal.txtFollowers.name.tr,
               count: (controller.fetchUserProfileModel?.user?.totalFollowers ?? 0).toInt(),
@@ -75,11 +67,7 @@ class ConnectionDetailsWidget extends StatelessWidget {
                 });
               },
             ),
-            VerticalDivider(
-              color: AppColor.grayText.withValues(alpha: 0.3),
-              indent: 15,
-              endIndent: 15,
-            ),
+            _divider(),
             ItemWidget(
               title: EnumLocal.txtVisitors.name.tr,
               count: (controller.fetchUserProfileModel?.user?.totalVisitors ?? 0).toInt(),
@@ -95,10 +83,23 @@ class ConnectionDetailsWidget extends StatelessWidget {
       ),
     );
   }
+
+  Widget _divider() {
+    return Container(
+      width: 1,
+      height: 40,
+      color: const Color(0xFFFFD54F).withValues(alpha: 0.5), // فاصل ذهبي
+    );
+  }
 }
 
 class ItemWidget extends StatelessWidget {
-  const ItemWidget({super.key, required this.title, required this.count, required this.callback});
+  const ItemWidget({
+    super.key,
+    required this.title,
+    required this.count,
+    required this.callback,
+  });
 
   final String title;
   final int count;
@@ -108,19 +109,21 @@ class ItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        overlayColor: WidgetStatePropertyAll(AppColor.transparent),
+        overlayColor: const WidgetStatePropertyAll(Colors.transparent),
         onTap: callback,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // ✅ الرقم بالذهبي
             Text(
               CustomFormatNumber.onConvert(count),
-              style: AppFontStyle.styleW700(AppColor.greyBlue, 14),
+              style: AppFontStyle.styleW700(const Color(0xFFFFD54F), 14),
             ),
             10.height,
+            // ✅ العنوان بالبني الفاتح
             Text(
               title,
-              style: AppFontStyle.styleW500(AppColor.grayText, 10),
+              style: AppFontStyle.styleW500(const Color(0xFF6D4C41), 10),
             ),
           ],
         ),
@@ -128,3 +131,4 @@ class ItemWidget extends StatelessWidget {
     );
   }
 }
+
