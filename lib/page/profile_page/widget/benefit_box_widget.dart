@@ -16,35 +16,32 @@ class BenefitBoxWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      margin: EdgeInsets.symmetric(horizontal: 15),
-      padding: EdgeInsets.all(15),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: AppColor.white,
+        color: const Color(0xFF4E342E), // خلفية بني
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: AppColor.secondary.withValues(alpha: 0.08),
-            blurRadius: 2,
-            spreadRadius: 3,
+            color: const Color(0xFFFFD54F).withValues(alpha: 0.25), // ظل ذهبي
+            blurRadius: 4,
+            spreadRadius: 2,
           ),
         ],
       ),
       child: GetBuilder<ProfileController>(builder: (logic) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ItemWidget(
                   title: EnumLocal.txtReward.name.tr,
-                  gradient: AppColor.rewardGradient,
                   image: AppAssets.icRewardIcon,
                   callback: () {},
                 ),
                 ItemWidget(
                   title: EnumLocal.txtRanking.name.tr,
-                  gradient: AppColor.rankingGradient,
                   image: AppAssets.icRankingIcon,
                   callback: () => Get.toNamed(AppRoutes.rankingPage)?.then((value) {
                     Utils.onChangeStatusBar(brightness: Brightness.dark);
@@ -53,7 +50,6 @@ class BenefitBoxWidget extends StatelessWidget {
                 ),
                 ItemWidget(
                   title: EnumLocal.txtMyStore.name.tr,
-                  gradient: AppColor.storeGradient,
                   image: AppAssets.icMyStoreIcon,
                   callback: () => Get.toNamed(AppRoutes.storePage)?.then((value) {
                     logic.scrollController.jumpTo(0.0);
@@ -62,7 +58,6 @@ class BenefitBoxWidget extends StatelessWidget {
                 ),
                 ItemWidget(
                   title: EnumLocal.txtInvite.name.tr,
-                  gradient: AppColor.inviteGradient,
                   image: AppAssets.icInviteIcon,
                   callback: () {},
                 ),
@@ -80,14 +75,11 @@ class ItemWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
-    required this.gradient,
     required this.callback,
   });
 
   final String title;
-
   final String image;
-  final Gradient gradient;
   final Callback callback;
 
   @override
@@ -101,29 +93,34 @@ class ItemWidget extends StatelessWidget {
             width: 54,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              gradient: gradient,
+              color: const Color(0xFFFFD54F), // زر ذهبي
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(width: 1, color: AppColor.white),
+              border: Border.all(width: 1, color: const Color(0xFF4E342E)),
               boxShadow: [
                 BoxShadow(
-                  color: AppColor.secondary.withValues(alpha: 0.05),
-                  spreadRadius: 2,
-                  blurRadius: 2,
+                  color: const Color(0xFF4E342E).withValues(alpha: 0.4),
+                  spreadRadius: 1,
+                  blurRadius: 3,
                 ),
               ],
             ),
             child: Image.asset(
               image,
               width: 26,
+              color: const Color(0xFF4E342E), // الأيقونة بني
             ),
           ),
-          5.height,
+          const SizedBox(height: 6),
           Text(
             title,
-            style: AppFontStyle.styleW600(AppColor.lightGreyPurple, 11),
+            style: AppFontStyle.styleW600(
+              const Color(0xFF6D4C41), // نص بني فاتح
+              11,
+            ),
           )
         ],
       ),
     );
   }
 }
+
