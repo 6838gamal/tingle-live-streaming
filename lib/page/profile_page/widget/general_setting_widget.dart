@@ -4,8 +4,6 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:tingle/page/profile_page/controller/profile_controller.dart';
 import 'package:tingle/routes/app_routes.dart';
 import 'package:tingle/utils/assets.dart';
-import 'package:tingle/utils/color.dart';
-import 'package:tingle/utils/enums.dart';
 import 'package:tingle/utils/font_style.dart';
 import 'package:tingle/utils/utils.dart';
 
@@ -19,55 +17,50 @@ class GeneralSettingWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 15),
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: AppColor.white,
+        // ✅ بني للخلفية
+        color: const Color(0xFF4E342E),
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: AppColor.secondary.withValues(alpha: 0.08),
-            blurRadius: 2,
+            color: Color(0x33000000),
+            blurRadius: 4,
             spreadRadius: 2,
           ),
         ],
       ),
       child: GetBuilder<ProfileController>(builder: (controller) {
         return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // ItemWidget(
-                //   title: EnumLocal.txtGuardian.name.tr,
-                //   image: AppAssets.icGuardianIcon,
-                //   callback: () async {},
-                // ),
                 ItemWidget(
-                  title: EnumLocal.txtLiveData.name.tr,
+                  title: "Live Data",
                   image: AppAssets.icLiveDataIcon,
                   callback: () {},
                 ),
                 ItemWidget(
-                  title: EnumLocal.txtBackpack.name.tr,
+                  title: "Backpack",
                   image: AppAssets.icBackpackIcon,
                   callback: () {
-                    Get.toNamed(AppRoutes.backpackPage)?.then(
-                      (value) {
-                        Utils.onChangeStatusBar(brightness: Brightness.dark);
-                        controller.scrollController.jumpTo(0.0);
-                      },
-                    );
+                    Get.toNamed(AppRoutes.backpackPage)?.then((value) {
+                      Utils.onChangeStatusBar(brightness: Brightness.dark);
+                      controller.scrollController.jumpTo(0.0);
+                    });
                   },
                 ),
                 ItemWidget(
-                  title: EnumLocal.txtHelp.name.tr,
+                  title: "Help",
                   image: AppAssets.icHelpIcon,
-                  callback: () => Get.toNamed(AppRoutes.helpPage)?.then((value) {
-                    Utils.onChangeStatusBar(brightness: Brightness.dark);
-                    controller.scrollController.jumpTo(0.0);
-                  }),
+                  callback: () {
+                    Get.toNamed(AppRoutes.helpPage)?.then((value) {
+                      Utils.onChangeStatusBar(brightness: Brightness.dark);
+                      controller.scrollController.jumpTo(0.0);
+                    });
+                  },
                 ),
                 ItemWidget(
-                  title: EnumLocal.txtMyAgency.name.tr,
+                  title: "My Agency",
                   image: AppAssets.icMyAgencyIcon,
                   callback: () {},
                 ),
@@ -78,21 +71,21 @@ class GeneralSettingWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ItemWidget(
-                  title: EnumLocal.txtLevel.name.tr,
+                  title: "Level",
                   image: AppAssets.icLevelIcon,
                   callback: () {},
                 ),
                 ItemWidget(
-                  title: EnumLocal.txtAboutUs.name.tr,
+                  title: "About",
                   image: AppAssets.icAboutUsIcon,
                   callback: () {},
                 ),
                 ItemWidget(
-                  title: EnumLocal.txtSettings.name.tr,
+                  title: "Settings",
                   image: AppAssets.icSettingIcon,
                   callback: () {},
                 ),
-                54.width
+                54.width,
               ],
             ),
           ],
@@ -112,7 +105,6 @@ class ItemWidget extends StatelessWidget {
 
   final String title;
   final String image;
-
   final Callback callback;
 
   @override
@@ -126,21 +118,25 @@ class ItemWidget extends StatelessWidget {
             width: 54,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: AppColor.secondary.withValues(alpha: 0.07),
+              // ✅ زر ذهبي
+              color: const Color(0xFFFFD54F),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Image.asset(
               image,
               width: 26,
+              color: const Color(0xFF4E342E), // لون الأيقونة بني
             ),
           ),
           5.height,
           Text(
             title,
-            style: AppFontStyle.styleW500(AppColor.lightGreyPurple, 11),
-          )
+            // ✅ نص بني فاتح
+            style: AppFontStyle.styleW500(const Color(0xFF6D4C41), 11),
+          ),
         ],
       ),
     );
   }
 }
+
